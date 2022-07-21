@@ -1,7 +1,4 @@
 ﻿using Domain.Common;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace Domain.Models
 {
@@ -9,6 +6,6 @@ namespace Domain.Models
     {
         public string Name { get; set; }
         public string Teacher { get; set; }
-        public int Room { get; set; }
+        public string Room { get; set; }
     }
 }

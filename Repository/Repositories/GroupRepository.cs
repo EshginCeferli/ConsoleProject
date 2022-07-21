@@ -13,8 +13,7 @@ namespace Repository.Repositories
             try
             {
                 if (data is null) throw new Exception("Data not found");
-                AppDbContext<Group>.datas.Add(data);
-                                
+                AppDbContext<Group>.datas.Add(data);                                
             }
             catch (Exception ex)
             {
@@ -24,7 +23,7 @@ namespace Repository.Repositories
 
         public void Delete(Group data)
         {
-            throw new NotImplementedException();
+            AppDbContext<Group>.datas.Remove(data);
         }
 
         public Group Get(Predicate<Group> predicate)
@@ -39,7 +38,18 @@ namespace Repository.Repositories
 
         public void Update(Group data)
         {
-            throw new NotImplementedException();
+            Group group = Get(m => m.Id == data.Id);
+            if (!string.IsNullOrEmpty(data.Name))            
+                group.Name = data.Name;       
+
+                
+            if (!string.IsNullOrEmpty(data.Teacher))
+                group.Teacher = data.Teacher;
+           
+            
+            if (!string.IsNullOrEmpty(data.Room))
+                group.Room = data.Room;         
+            
         }
     }
 }

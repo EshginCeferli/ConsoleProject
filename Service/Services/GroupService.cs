@@ -1,6 +1,5 @@
 ﻿using Domain.Models;
 using Repository.Repositories;
-using System;
 using System.Collections.Generic;
 
 namespace Service.Services
@@ -25,7 +24,8 @@ namespace Service.Services
 
         public void Delete(int id)
         {
-            throw new NotImplementedException();
+            Group group = GetById(id);
+            _groupRepository.Delete(group);
         }
 
         public List<Group> GetAll()
@@ -44,13 +44,35 @@ namespace Service.Services
 
         public Group Update(int id, Group group)
         {
-            throw new NotImplementedException();
+            Group dbGroup = GetById(id);
+            if (dbGroup is null) return null;
+            dbGroup.Id = group.Id;
+            _groupRepository.Update(group);
+            return group; 
         }
 
         public List<Group> Search(string search)
         {
             return _groupRepository.GetAll(m => m.Name.ToLower().Trim().StartsWith(search.ToLower().Trim()));
             
+        }
+
+        public List<Group> GetGroupsByTeacher(string teacher)
+        {
+            var resultTeacher = _groupRepository.GetAll(m => m.Teacher == teacher);
+            return resultTeacher;
+        }
+
+        public List<Group> GetGroupsByRoom(string room)
+        {
+            var resultRoom = _groupRepository.GetAll(m => m.Room == room);
+            return resultRoom;
+        }
+
+        public List<Group> SearchForGroupName(string text)
+        {
+            var searchGroupName = _groupRepository.GetAll(m => m.Name.Trim().ToLower().Contains(text.ToLower().Trim()));
+            return searchGroupName;
         }
     }
 }

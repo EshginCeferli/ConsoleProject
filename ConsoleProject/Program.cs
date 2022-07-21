@@ -1,8 +1,6 @@
-﻿using Domain.Models;
+﻿using ConsoleProject.Controllers;
 using Service.Helpers;
-using Service.Services;
 using System;
-using System.Collections.Generic;
 
 namespace ConsoleProject
 {
@@ -10,10 +8,11 @@ namespace ConsoleProject
     {
         static void Main(string[] args)
         {
-            GroupService groupService = new GroupService();
+            StudentController studentController = new StudentController();
+            GroupController groupController = new GroupController();
 
             Helper.WriteConsole(ConsoleColor.Blue, "Select one option : ");
-            Helper.WriteConsole(ConsoleColor.Yellow,"1 - Create Group, 2 - Get Group by Id, 3 - Update Group, 4 - Delete Group, 5 - Get all groups, 6 - Search group by text");
+            GetMenues();
 
             while (true)
             {
@@ -27,120 +26,55 @@ namespace ConsoleProject
                 {
                     switch (selectTrueOption)
                     {
-                        case 1: //Create Group
+                        case (int) Menues.CreateGroup: //1
 
-                            Helper.WriteConsole(ConsoleColor.Blue, "Please add Group name : ");
+                            groupController.Create();
+                            break;
 
-                            string groupName = Console.ReadLine();
+                        case (int)Menues.GetGroupById: //2
 
-                            Helper.WriteConsole(ConsoleColor.Blue, "Please add Group Teacher");
+                            groupController.GetById();
+                            break;
 
-                            string groupTeacher = Console.ReadLine();
+                        case (int)Menues.UpdateGroup: //3
 
-                            Helper.WriteConsole(ConsoleColor.Blue, "Please add Group Room");
+                            groupController.Update();
+                            break;
 
-                            RoomNumber: string groupRoom = Console.ReadLine();
+                        case (int)Menues.DeleteGroup: //4
 
-                            int room;
+                            groupController.Delete(); 
+                            break;
 
-                            bool isGroupRoom = int.TryParse(groupRoom, out room);
+                        case (int)Menues.GetAllGroups:  //5
 
-                            if (isGroupRoom)
-                            {
-                                Group group = new Group()
-                                {
-                                    Name = groupName,
-                                    Teacher = groupTeacher,
-                                    Room = room
-                                };
-
-                                var result = groupService.Create(group);
-                                Helper.WriteConsole(ConsoleColor.Green, $"Group Id : {result.Id}, Group name : {result.Name}, Group teacher : {result.Teacher}, Group room : {result.Room}");
-
-                            }
-                            else
-                            {
-                                Helper.WriteConsole(ConsoleColor.Red, "Rooms are called by number");
-                                goto RoomNumber;
-                            }
+                            groupController.GetAll();
 
                             break;
 
-                        case 2: //Get group by id
+                        case (int)Menues.SearchGroup: //6
 
-                            Helper.WriteConsole(ConsoleColor.Blue, "Add group Id");
-
-                            GroupId: string groupId = Console.ReadLine();
-
-                            int id;
-
-                            bool isId = int.TryParse(groupId, out id);
-
-                            if (isId)
-                            {
-                                Group group = groupService.GetById(id);
-
-                                if (group != null)
-                                {
-                                    Helper.WriteConsole(ConsoleColor.Green, $"Group Id : {group.Id}, Group name : {group.Name}, Group teacher : {group.Teacher}, Group room : {group.Room}");
-
-                                }
-                                else
-                                {
-                                    Helper.WriteConsole(ConsoleColor.Red, "Group not found");
-                                }
-                            }
-                            else
-                            {
-                                Helper.WriteConsole(ConsoleColor.Red, "Id should be number");
-                                goto GroupId;
-                            }
-
+                            groupController.Search();
                             break;
 
-                        case 3:
+                        case (int)Menues.CreateStudent: // 7
 
-                            Console.WriteLine(selectTrueOption);
+                            studentController.Create();
                             break;
 
-                        case 4:
+                        case (int)Menues.GetGroupsByTeacher: // 8
 
-                            Console.WriteLine(selectTrueOption);
+                            groupController.GetGroupsByTeacher();
                             break;
 
-                        case 5:  //Get all groups
+                        case (int)Menues.GetGroupsByRoom: // 9
 
-                            List<Group> groups = groupService.GetAll();
-
-                            foreach (var item in groups)
-                            {
-                                Helper.WriteConsole(ConsoleColor.Green, $"Group Id : {item.Id}, Group name : {item.Name}, Group teacher : {item.Teacher}, Group room : {item.Room}");
-
-                            }
-
+                            groupController.GetGroupsByRoom();
                             break;
 
-                        case 6: //Search by text
+                        case (int)Menues.SearchForGroupName: // 10
 
-                            Helper.WriteConsole(ConsoleColor.Blue, "Add search text");
-
-                        SearchText: string searchText = Console.ReadLine();
-
-                            List<Group> resultGroups = groupService.Search(searchText);
-                            if(resultGroups != null)
-                            {
-                                foreach (var item in resultGroups)
-                                {
-                                    Helper.WriteConsole(ConsoleColor.Green, $"Group Id : {item.Id}, Group name : {item.Name}, Group teacher : {item.Teacher}, Group room : {item.Room}");
-
-                                }
-                            }
-                            else
-                            {
-                                Helper.WriteConsole(ConsoleColor.Red, "Library not found ");
-
-                                goto SearchText;
-                            }
+                            groupController.SearchForGroupName();
                             break;
 
 
@@ -156,6 +90,10 @@ namespace ConsoleProject
                     goto SelectOption;
                 }
             }
+        }
+        private static void GetMenues()
+        {
+            Helper.WriteConsole(ConsoleColor.Yellow, "1 - Create Group, 2 - Get Group by Id, 3 - Update Group, 4 - Delete Group, 5 - Get all groups, 6 - Search group by text, 7 - Create Student, 8 - Get groups by teacher name, 9 - Get groups by room, 10 - Search for group name");
         }
     }
 }
