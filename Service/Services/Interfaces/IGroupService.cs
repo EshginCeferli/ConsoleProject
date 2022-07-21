@@ -5,7 +5,7 @@ namespace Service.Services
 {
     public interface IGroupService
     {
-        Group Create(Group group);
+        //Group Create(Group group);
         Group Update(int id, Group group);
         void Delete(int id);
         Group GetById(int id);
