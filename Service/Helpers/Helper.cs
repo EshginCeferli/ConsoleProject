@@ -21,16 +21,24 @@ namespace Service.Helpers
     }
     public enum Menues
     {
+        // Options of Group
+
         CreateGroup = 1,
         GetGroupById = 2,
         UpdateGroup = 3,
         DeleteGroup = 4,
         GetAllGroups = 5,
-        SearchGroup   = 6,
-        CreateStudent = 7,
-        GetGroupsByTeacher = 8,
-        GetGroupsByRoom = 9,
-        SearchForGroupName = 10
+        SearchGroup   = 6,        
+        GetGroupsByTeacher = 7,
+        GetGroupsByRoom = 8,
+        SearchForGroupName = 9,
+        
+        // Options of Student
+
+        CreateStudent = 10,
+        GetStudentById = 11,
+        DeleteStudent = 12
+
 
 
     }

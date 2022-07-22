@@ -15,7 +15,6 @@ namespace Repository.Repositories
             {
                 if (data is null) throw new Exception("Data not found");
                 AppDbContext<Student>.datas.Add(data);
-
             }
             catch (Exception ex)
             {
@@ -25,12 +24,22 @@ namespace Repository.Repositories
 
         public void Delete(Student data)
         {
-            throw new NotImplementedException();
+            try
+            {
+                if (data is null) throw new Exception("Data doesn't already exit");
+                AppDbContext<Student>.datas.Remove(data);
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message); ;
+            }
         }
 
         public Student Get(Predicate<Student> predicate)
         {
-            throw new NotImplementedException();
+            return predicate != null ? AppDbContext<Student>.datas.Find(predicate) : null;
         }
 
         public List<Student> GetAll(Predicate<Student> predicate)

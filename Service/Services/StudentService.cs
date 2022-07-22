@@ -1,30 +1,43 @@
 ﻿using Domain.Models;
 using Repository.Repositories;
 using Service.Services.Interfaces;
+using System.Collections.Generic;
 
 namespace Service.Services
 {
     public class StudentService : IStudentService
     {
-        private StudentRepository _studentrepository;
+        private StudentRepository _studentRepository;
         private GroupRepository _groupRepository;
         private int _count;
 
         public StudentService()
         {
-            _studentrepository = new StudentRepository();
+            _studentRepository = new StudentRepository();
             _groupRepository = new GroupRepository();
-
         }
-
         public Student Create(int groupId, Student student)
         {
             var group = _groupRepository.Get(m => m.Id == groupId);
             if (group is null) return null;
-            student.Id = _count;
             student.Group = group;
-            _studentrepository.Create(student);
+            student.Id = _count;
+            _studentRepository.Create(student);
             _count++;
+            return student;
+
+        }
+
+        public void DeleteStudent(int id)
+        {
+            Student student = GetStudentById(id);
+            _studentRepository.Delete(student);
+        }
+
+        public Student GetStudentById(int id)
+        {
+            var student = _studentRepository.Get(m => m.Id == id);
+            if (student == null) return null;
             return student;
         }
     }

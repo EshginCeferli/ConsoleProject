@@ -8,5 +8,9 @@ namespace Service.Services.Interfaces
     public interface IStudentService
     {
         Student Create(int groupId, Student student);
+
+        Student GetStudentById(int id);
+
+        void DeleteStudent(int id);
     }
 }
