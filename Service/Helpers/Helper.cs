@@ -37,9 +37,9 @@ namespace Service.Helpers
 
         CreateStudent = 10,
         GetStudentById = 11,
-        DeleteStudent = 12
-
-
+        DeleteStudent = 12,
+        GetStudentByAge = 13,
+        GetStudentsByGroupId =14
 
     }
 }

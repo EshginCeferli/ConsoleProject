@@ -3,12 +3,13 @@ using Service.Helpers;
 using Service.Services;
 using Service.Services.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace ConsoleProject.Controllers
 {
-    public class StudentController 
+    public class StudentController
     {
-        StudentService studentService = new StudentService();
+        readonly StudentService studentService = new StudentService();
 
         public void Create()
         {
@@ -16,7 +17,7 @@ namespace ConsoleProject.Controllers
 
             Helper.WriteConsole(ConsoleColor.Blue, " Add group id ");
 
-            GroupId: string groupId = Console.ReadLine();
+        GroupId: string groupId = Console.ReadLine();
 
             int selectedGroupId;
 
@@ -26,7 +27,7 @@ namespace ConsoleProject.Controllers
             {
                 Helper.WriteConsole(ConsoleColor.Blue, " Add student name ");
 
-                NameSurname: string studentName = Console.ReadLine();
+            NameSurname: string studentName = Console.ReadLine();
 
                 Helper.WriteConsole(ConsoleColor.Blue, " Add student surnname ");
 
@@ -40,7 +41,7 @@ namespace ConsoleProject.Controllers
                 {
                     Helper.WriteConsole(ConsoleColor.Blue, " Add student age");
 
-                    StudentAge: string studentAge = Console.ReadLine();
+                StudentAge: string studentAge = Console.ReadLine();
 
                     int selectedAge;
 
@@ -52,11 +53,11 @@ namespace ConsoleProject.Controllers
                         {
                             Name = studentName,
                             Surname = studentSurname,
-                            Age = selectedAge                        
+                            Age = selectedAge
                         };
 
                         var result = studentService.Create(selectedGroupId, student);
-                        
+
                         if (result != null)
                         {
                             Helper.WriteConsole(ConsoleColor.Green, $" Student Id : {result.Id}, Student name : {result.Name}, Student surname : {result.Surname}, Student age : {result.Age}, Student's group : {result.Group.Name}");
@@ -66,9 +67,7 @@ namespace ConsoleProject.Controllers
                         {
                             Helper.WriteConsole(ConsoleColor.Red, " Group not found, please add correct group id ");
                             goto GroupId;
-
                         }
-
                     }
                     else
                     {
@@ -81,9 +80,6 @@ namespace ConsoleProject.Controllers
                     Helper.WriteConsole(ConsoleColor.Red, " Name or Surname contains digit ");
                     goto NameSurname;
                 }
-
-
-
             }
             else
             {
@@ -91,7 +87,7 @@ namespace ConsoleProject.Controllers
                 goto GroupId;
             }
 
-        }     
+        }
 
         public void GetById()
         {
@@ -127,7 +123,7 @@ namespace ConsoleProject.Controllers
         public void DeleteStudent()
         {
             Helper.WriteConsole(ConsoleColor.Blue, "Add student id : ");
-            StudentId: string studentId = Console.ReadLine();
+        StudentId: string studentId = Console.ReadLine();
             int id;
             bool isStudentId = int.TryParse(studentId, out id);
 
@@ -139,6 +135,74 @@ namespace ConsoleProject.Controllers
             {
                 Helper.WriteConsole(ConsoleColor.Red, "Id must be number");
                 goto StudentId;
+            }
+        }
+
+        public void GetStudentsByAge()
+        {
+            Helper.WriteConsole(ConsoleColor.Blue, "Please add student age : ");
+
+        CorrectAge: string searchAge = Console.ReadLine();
+
+            int selectedAge;
+
+            bool isSearchAge = int.TryParse(searchAge, out selectedAge);
+
+            if (isSearchAge || selectedAge > 0) 
+            {
+                List<Student> studentsByAge = studentService.GetStudentsByAge(selectedAge);
+
+                if (studentsByAge.Count != 0)
+                {
+                    foreach (var item in studentsByAge)
+                    {
+                        Helper.WriteConsole(ConsoleColor.Green, $" Student Id : {item.Id}, Student name : {item.Name}, Student surname : {item.Surname}, Student's age : {item.Age}, Student's Group : {item.Group.Name}");
+                    }
+                }
+                else
+                {
+                    Helper.WriteConsole(ConsoleColor.Red, " Student not found ");
+                    goto CorrectAge;
+                }
+            }
+            else
+            {
+                Helper.WriteConsole(ConsoleColor.Red, "Student age is wrong ");
+                goto CorrectAge;
+            }
+        }
+
+        public void GetStudentsByGroupId()
+        {
+            Helper.WriteConsole(ConsoleColor.Blue, "Please add group Id : ");
+
+        CorrectId: string studentGroupId = Console.ReadLine();
+
+            int selecetedId;
+
+            bool isSearchId = int.TryParse(studentGroupId, out selecetedId);
+
+            if (isSearchId)
+            {
+                List<Student> studentsByGroupId = studentService.GetStudentsByGroupId(selecetedId);
+
+                if (studentsByGroupId.Count != 0)
+                {
+                    foreach (var item in studentsByGroupId)
+                    {
+                        Helper.WriteConsole(ConsoleColor.Green, $" Student Id : {item.Id}, Student name : {item.Name}, Student surname : {item.Surname}, Student's age : {item.Age}, Student's Group : {item.Group.Name}");
+                    }
+                }
+                else
+                {
+                    Helper.WriteConsole(ConsoleColor.Red, " Group not found ");
+                    goto CorrectId;
+                }
+            }
+            else
+            {
+                Helper.WriteConsole(ConsoleColor.Red, " Id type is wrong ");
+                goto CorrectId;
             }
         }
     }

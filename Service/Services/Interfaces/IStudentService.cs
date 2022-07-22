@@ -12,5 +12,11 @@ namespace Service.Services.Interfaces
         Student GetStudentById(int id);
 
         void DeleteStudent(int id);
+
+        List<Student> GetStudentsByAge(int age);
+
+        List<Student> GetStudentsByGroupId(int id);
+
+       
     }
 }

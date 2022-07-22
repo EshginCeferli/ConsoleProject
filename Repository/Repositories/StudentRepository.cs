@@ -44,7 +44,7 @@ namespace Repository.Repositories
 
         public List<Student> GetAll(Predicate<Student> predicate)
         {
-            throw new NotImplementedException();
+            return predicate != null ? AppDbContext<Student>.datas.FindAll(predicate): null;
         }
 
         public void Update(Student data)

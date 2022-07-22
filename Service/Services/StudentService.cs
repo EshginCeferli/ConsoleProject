@@ -40,5 +40,19 @@ namespace Service.Services
             if (student == null) return null;
             return student;
         }
+
+        public List<Student> GetStudentsByAge(int age)
+        {
+            var student = _studentRepository.GetAll(m => m.Age == age);
+            if (student == null) return null;
+            return student;            
+        }
+
+        public List<Student> GetStudentsByGroupId(int id)
+        {
+            var student = _studentRepository.GetAll(m => m.Group.Id == id);
+            if (student == null) return null;
+            return student;
+        }
     }
 }

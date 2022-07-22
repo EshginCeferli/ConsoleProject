@@ -87,6 +87,16 @@ namespace ConsoleProject
                             studentController.DeleteStudent();
                             break;
 
+                        case (int)Menues.GetStudentByAge: // 13
+
+                            studentController.GetStudentsByAge();
+                            break;
+
+                        case (int)Menues.GetStudentsByGroupId: // 14
+
+                            studentController.GetStudentsByGroupId();
+                            break;
+
                         default:
 
                             Helper.WriteConsole(ConsoleColor.Red, "Select existing option : ");
@@ -102,7 +112,7 @@ namespace ConsoleProject
         }
         private static void GetMenues()
         {
-            Helper.WriteConsole(ConsoleColor.Yellow, " Create Group - 1, Get Group By Id - 2, Delete Group - 4, Get All Groups - 5, SearchGroup - 6, Get Groups By Teacher - 7,  GetGroupsByRoom - 8, Search For Group Name = 9, Create Student - 10, Get Student ById - 11, Delete Student - 12");
+            Helper.WriteConsole(ConsoleColor.Yellow, " Create Group - 1, Get Group By Id - 2, Update Group - 3, Delete Group - 4, Get All Groups - 5, SearchGroup - 6, Get Groups By Teacher - 7,  GetGroupsByRoom - 8, Search For Group Name = 9, Create Student - 10, Get Student ById - 11, Delete Student - 12, Get students by age - 13, Get students by Group Id - 14");
  
         }
     }
