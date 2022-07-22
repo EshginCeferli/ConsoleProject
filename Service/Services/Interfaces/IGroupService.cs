@@ -15,7 +15,7 @@ namespace Service.Services
 
         List<Group> GetAll();
 
-        List<Group> Search(string search);
+        //List<Group> Search(string search);
 
         List<Group> GetGroupsByTeacher(string teacher);
 

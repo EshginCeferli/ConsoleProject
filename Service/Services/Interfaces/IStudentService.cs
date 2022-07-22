@@ -17,6 +17,8 @@ namespace Service.Services.Interfaces
 
         List<Student> GetStudentsByGroupId(int id);
 
+        List<Student> SearchStudentsByName(string name);
+
        
     }
 }

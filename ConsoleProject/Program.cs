@@ -25,7 +25,8 @@ namespace ConsoleProject
                 if (isSelectOption)
                 {
                     switch (selectTrueOption)
-                    {
+                    {                        
+
                         case (int) Menues.CreateGroup: //1
 
                             groupController.Create();
@@ -49,52 +50,52 @@ namespace ConsoleProject
                         case (int)Menues.GetAllGroups:  //5
 
                             groupController.GetAll();
-
                             break;
+                                             
 
-                        case (int)Menues.SearchGroup: //6
-
-                            groupController.Search();
-                            break;                       
-
-                        case (int)Menues.GetGroupsByTeacher: // 7
+                        case (int)Menues.GetGroupsByTeacher: // 6
 
                             groupController.GetGroupsByTeacher();
                             break;
 
-                        case (int)Menues.GetGroupsByRoom: // 8
+                        case (int)Menues.GetGroupsByRoom: // 7
 
                             groupController.GetGroupsByRoom();
                             break;
 
-                        case (int)Menues.SearchForGroupName: // 9
+                        case (int)Menues.SearchForGroupName: // 8
 
                             groupController.SearchForGroupName();
                             break;
 
-                        case (int)Menues.CreateStudent: // 10
+                        case (int)Menues.CreateStudent: // 9
 
                             studentController.Create();
                             break;
 
-                        case (int)Menues.GetStudentById: // 11
+                        case (int)Menues.GetStudentById: // 10
 
                             studentController.GetById();
                             break;
 
-                        case (int)Menues.DeleteStudent: // 12
+                        case (int)Menues.DeleteStudent: // 11
 
                             studentController.DeleteStudent();
                             break;
 
-                        case (int)Menues.GetStudentByAge: // 13
+                        case (int)Menues.GetStudentByAge: // 12
 
                             studentController.GetStudentsByAge();
                             break;
 
-                        case (int)Menues.GetStudentsByGroupId: // 14
+                        case (int)Menues.GetStudentsByGroupId: // 13
 
                             studentController.GetStudentsByGroupId();
+                            break;
+
+                        case (int)Menues.SearchStudentByName: // 14
+
+                            studentController.SeachStudentsByName();
                             break;
 
                         default:
@@ -111,9 +112,9 @@ namespace ConsoleProject
             }
         }
         private static void GetMenues()
-        {
-            Helper.WriteConsole(ConsoleColor.Yellow, " Create Group - 1, Get Group By Id - 2, Update Group - 3, Delete Group - 4, Get All Groups - 5, SearchGroup - 6, Get Groups By Teacher - 7,  GetGroupsByRoom - 8, Search For Group Name = 9, Create Student - 10, Get Student ById - 11, Delete Student - 12, Get students by age - 13, Get students by Group Id - 14");
- 
+        {            
+            Helper.WriteConsole(ConsoleColor.Yellow, " Create Group - 1, Get Group By Id - 2, Update Group - 3, Delete Group - 4, Get All Groups - 5, Get Groups By Teacher - 6,  GetGroupsByRoom - 7, Search For Group Name - 8, Create Student - 9, Get Student ById - 10, Delete Student - 11, Get students by age - 12, Get students by Group Id - 13, Search student by Name - 14");
+           
         }
     }
    

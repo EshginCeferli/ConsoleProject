@@ -110,7 +110,21 @@ namespace ConsoleProject.Controllers
                 }
                 else
                 {
-                    Helper.WriteConsole(ConsoleColor.Red, "Student not found");
+                    Helper.WriteConsole(ConsoleColor.Red, " Student not found, try again - 1, back to top - 2");
+                    string again = Console.ReadLine();
+
+                    int againCheck;
+
+                    bool isAgainCheck = int.TryParse(again, out againCheck);
+
+                    if (isAgainCheck)
+                    {
+                        switch (againCheck)
+                        {
+                            case 1:
+                                goto StudentId;
+                        }
+                    }
                 }
             }
             else
@@ -161,8 +175,21 @@ namespace ConsoleProject.Controllers
                 }
                 else
                 {
-                    Helper.WriteConsole(ConsoleColor.Red, " Student not found ");
-                    goto CorrectAge;
+                    Helper.WriteConsole(ConsoleColor.Red, "Group not found, try again - 1, back to top - 2");
+                    string again = Console.ReadLine();
+
+                    int againCheck;
+
+                    bool isAgainCheck = int.TryParse(again, out againCheck);
+
+                    if (isAgainCheck)
+                    {
+                        switch (againCheck)
+                        {
+                            case 1:
+                                goto CorrectAge;
+                        }
+                    }
                 }
             }
             else
@@ -195,14 +222,61 @@ namespace ConsoleProject.Controllers
                 }
                 else
                 {
-                    Helper.WriteConsole(ConsoleColor.Red, " Group not found ");
-                    goto CorrectId;
+                    Helper.WriteConsole(ConsoleColor.Red, "Group not found, try again - 1, back to top - 2");
+                    string again = Console.ReadLine();
+
+                    int againCheck;
+
+                    bool isAgainCheck = int.TryParse(again, out againCheck);
+
+                    if (isAgainCheck)
+                    {
+                        switch (againCheck)
+                        {
+                            case 1:
+                                goto CorrectId;
+                        }
+                    }
                 }
             }
             else
             {
                 Helper.WriteConsole(ConsoleColor.Red, " Id type is wrong ");
                 goto CorrectId;
+            }
+        }
+
+        public void SeachStudentsByName()
+        {
+            Helper.WriteConsole(ConsoleColor.Blue, "Please add search text");
+
+        SearchText: string searchStudentName = Console.ReadLine();
+
+            List<Student> studentsByName = studentService.SearchStudentsByName(searchStudentName);
+            if (studentsByName.Count != 0)
+            {
+                foreach (var item in studentsByName)
+                {
+                    Helper.WriteConsole(ConsoleColor.Green, $"Student Id : {item.Id}, Student name : {item.Name}, Student surname : {item.Surname}, Student age : {item.Age}, Student group : {item.Group.Name}");
+                }
+            }
+            else
+            {
+                Helper.WriteConsole(ConsoleColor.Red, "Group not found, try again - 1, back to top - 2");
+                string again = Console.ReadLine();
+
+                int againCheck;
+
+                bool isAgainCheck = int.TryParse(again, out againCheck);
+
+                if (isAgainCheck)
+                {
+                    switch (againCheck)
+                    {
+                        case 1:
+                            goto SearchText;
+                    }
+                }
             }
         }
     }

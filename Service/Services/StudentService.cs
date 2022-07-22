@@ -9,7 +9,7 @@ namespace Service.Services
     {
         private StudentRepository _studentRepository;
         private GroupRepository _groupRepository;
-        private int _count;
+        private int _count = 1;
 
         public StudentService()
         {
@@ -53,6 +53,11 @@ namespace Service.Services
             var student = _studentRepository.GetAll(m => m.Group.Id == id);
             if (student == null) return null;
             return student;
+        }
+
+        public List<Student> SearchStudentsByName(string name)
+        {
+            return _studentRepository.GetAll(m => m.Name.Trim().ToLower().Contains(name.Trim().ToLower()));
         }
     }
 }

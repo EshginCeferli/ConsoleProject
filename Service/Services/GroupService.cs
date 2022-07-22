@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Repository.Repositories;
+using Repository.Repositories.Exceptions;
 using System.Collections.Generic;
 
 namespace Service.Services
@@ -11,9 +12,10 @@ namespace Service.Services
         {
             _groupRepository = new GroupRepository();
         }
-        private int _count;
+        private int _count = 1;
         public Group Create(Group group)
         {
+
             group.Id = _count;
 
             _groupRepository.Create(group);
@@ -24,8 +26,21 @@ namespace Service.Services
 
         public void Delete(int id)
         {
-            Group group = GetById(id);
-            _groupRepository.Delete(group);
+            try
+            {
+                Group group = GetById(id);
+
+                if (group != null) _groupRepository.Delete(group);
+                
+                else throw new NotFoundException(" Group Not Found");              
+
+            }
+            catch (System.Exception ex)
+            {
+
+                System.Console.WriteLine(ex.Message);
+            }
+            
         }
 
         public List<Group> GetAll()
@@ -51,11 +66,11 @@ namespace Service.Services
             return group; 
         }
 
-        public List<Group> Search(string search)
-        {
-            return _groupRepository.GetAll(m => m.Name.ToLower().Trim().StartsWith(search.ToLower().Trim()));
+        //public List<Group> Search(string search)
+        //{
+        //    return _groupRepository.GetAll(m => m.Name.ToLower().Trim().StartsWith(search.ToLower().Trim()));
             
-        }
+        //}
 
         public List<Group> GetGroupsByTeacher(string teacher)
         {
@@ -73,6 +88,6 @@ namespace Service.Services
         {
             var searchGroupName = _groupRepository.GetAll(m => m.Name.Trim().ToLower().Contains(text.ToLower().Trim()));
             return searchGroupName;
-        }
+        }        
     }
 }

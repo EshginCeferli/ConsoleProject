@@ -1,5 +1,6 @@
 ﻿using Domain.Models;
 using Repository.Data;
+using Repository.Repositories.Exceptions;
 using Repository.Repositories.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -13,7 +14,8 @@ namespace Repository.Repositories
         {
             try
             {
-                if (data is null) throw new Exception("Data not found");
+                if (data is null) throw new NotFoundException("Data not found");
+
                 AppDbContext<Student>.datas.Add(data);
             }
             catch (Exception ex)

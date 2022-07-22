@@ -9,11 +9,16 @@ namespace Service.Helpers
         {
             Console.ForegroundColor = color;
             Console.WriteLine(text);
-            Console.ResetColor();
-
-
-            
+            Console.ResetColor();            
         }
+
+        public static void WriteConsoleColumn(ConsoleColor color, string text)
+        {
+            Console.ForegroundColor = color;
+            Console.Write(text);
+            Console.ResetColor();
+        }
+
         public static bool CheckString(string input)
         {
             return Regex.IsMatch(input, "^[a-zA-Z]+$");
@@ -21,6 +26,7 @@ namespace Service.Helpers
     }
     public enum Menues
     {
+        GoBack = 0,
         // Options of Group
 
         CreateGroup = 1,
@@ -28,18 +34,19 @@ namespace Service.Helpers
         UpdateGroup = 3,
         DeleteGroup = 4,
         GetAllGroups = 5,
-        SearchGroup   = 6,        
-        GetGroupsByTeacher = 7,
-        GetGroupsByRoom = 8,
-        SearchForGroupName = 9,
+                
+        GetGroupsByTeacher = 6,
+        GetGroupsByRoom = 7,
+        SearchForGroupName = 8,
         
         // Options of Student
 
-        CreateStudent = 10,
-        GetStudentById = 11,
-        DeleteStudent = 12,
-        GetStudentByAge = 13,
-        GetStudentsByGroupId =14
+        CreateStudent = 9,
+        GetStudentById = 10,
+        DeleteStudent = 11,
+        GetStudentByAge = 12,
+        GetStudentsByGroupId = 13,
+        SearchStudentByName = 14
 
     }
 }

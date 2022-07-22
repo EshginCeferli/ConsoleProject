@@ -22,7 +22,7 @@ namespace Repository.Repositories
         }
 
         public void Delete(Group data)
-        {
+        {   if(data is null)     
             AppDbContext<Group>.datas.Remove(data);
         }
 

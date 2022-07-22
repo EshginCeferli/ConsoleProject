@@ -6,49 +6,60 @@ using System.Collections.Generic;
 using Domain.Models;
 
 namespace ConsoleProject.Controllers
-{
+{    
     public class GroupController
     {
-        GroupService groupService = new GroupService();
+        GroupService groupService = new GroupService();       
+
+
         public void Create()
         {
             Helper.WriteConsole(ConsoleColor.Blue, "Please add Group name : ");
 
-            string groupName = Console.ReadLine();
+        TeacherNameEmpty: string groupName = Console.ReadLine();
 
-            Helper.WriteConsole(ConsoleColor.Blue, "Please add Group Teacher");
+            if (groupName != "")
+            {
+                Helper.WriteConsole(ConsoleColor.Blue, "Please add Group Teacher");
 
             CorrectName: string groupTeacher = Console.ReadLine();
 
-            bool isGroupTeacher = Helper.CheckString(groupTeacher);
+                bool isGroupTeacher = Helper.CheckString(groupTeacher);
 
-            if (isGroupTeacher)
-            {
-                Helper.WriteConsole(ConsoleColor.Blue, "Please add Group Room");
-
-                
-                string groupRoom = Console.ReadLine();
-
-                
-                Group group = new Group()
+                if (isGroupTeacher is true || groupTeacher != "") 
                 {
-                    Name = groupName,
-                    Teacher = groupTeacher,
-                    Room = groupRoom
-                };
+                    Helper.WriteConsole(ConsoleColor.Blue, "Please add Group Room");
 
-                var result = groupService.Create(group);
-                Helper.WriteConsole(ConsoleColor.Green, $"Group Id : {result.Id}, Group name : {result.Name}, Group teacher : {result.Teacher}, Group room : {result.Room}");
 
+                    string groupRoom = Console.ReadLine();
+
+
+                    Group group = new Group()
+                    {
+                        Name = groupName,
+                        Teacher = groupTeacher,
+                        Room = groupRoom
+                    };
+
+                    var result = groupService.Create(group);
+                    Helper.WriteConsole(ConsoleColor.Green, $"Group Id : {result.Id}, Group name : {result.Name}, Group teacher : {result.Teacher}, Group room : {result.Room}");
+
+                }
+                else
+                {
+                    Helper.WriteConsole(ConsoleColor.Red, "Add correct teacher name");
+                    goto CorrectName;
+
+                }
             }
             else
             {
-                Helper.WriteConsole(ConsoleColor.Red, "Teacher name cant be number");
-                goto CorrectName;
+                Helper.WriteConsole(ConsoleColor.Red, " Add group name ");
+                goto TeacherNameEmpty;
+            }
 
-            }          
 
-           
+
         }
 
         public void GetById()
@@ -72,7 +83,21 @@ namespace ConsoleProject.Controllers
                 }
                 else
                 {
-                    Helper.WriteConsole(ConsoleColor.Red, "Group not found");
+                    Helper.WriteConsole(ConsoleColor.Red, "Group not found, try again - 1, back to top - 2");
+                    string again = Console.ReadLine();
+
+                    int againCheck;
+
+                    bool isAgainCheck = int.TryParse(again, out againCheck);
+
+                    if (isAgainCheck)
+                    {
+                        switch (againCheck)
+                        {
+                            case 1:
+                                goto GroupId;
+                        }
+                    }
                 }
             }
             else
@@ -135,19 +160,22 @@ namespace ConsoleProject.Controllers
         {
             Helper.WriteConsole(ConsoleColor.Blue, "Add group id : ");
         GroupId: string groupId = Console.ReadLine();
+
             int id;
+
             bool isGroupId = int.TryParse(groupId, out id);
 
-            if (isGroupId)
+            if (isGroupId || id != 0)
             {
-                groupService.Delete(id);
+                groupService.Delete(id);               
+
             }
+
             else
             {
                 Helper.WriteConsole(ConsoleColor.Red, "Id must be number");
                 goto GroupId;
             }
-
         }
 
         public void GetAll()
@@ -161,27 +189,27 @@ namespace ConsoleProject.Controllers
             }
         }
 
-        public void Search()
-        {
-            Helper.WriteConsole(ConsoleColor.Blue, "Add search text");
+        //public void Search()
+        //{
+        //    Helper.WriteConsole(ConsoleColor.Blue, "Add search text");
 
-        SearchText: string searchText = Console.ReadLine();
+        //SearchText: string searchText = Console.ReadLine();
 
-            List<Group> resultGroups = groupService.Search(searchText);
-            if (resultGroups.Count != 0)
-            {
-                foreach (var item in resultGroups)
-                {
-                    Helper.WriteConsole(ConsoleColor.Green, $"Group Id : {item.Id}, Group name : {item.Name}, Group teacher : {item.Teacher}, Group room : {item.Room}");
-                }
-            }
-            else
-            {
-                Helper.WriteConsole(ConsoleColor.Red, "Library not found ");
+        //    List<Group> resultGroups = groupService.Search(searchText);
+        //    if (resultGroups.Count != 0)
+        //    {
+        //        foreach (var item in resultGroups)
+        //        {
+        //            Helper.WriteConsole(ConsoleColor.Green, $"Group Id : {item.Id}, Group name : {item.Name}, Group teacher : {item.Teacher}, Group room : {item.Room}");
+        //        }
+        //    }
+        //    else
+        //    {
+        //        Helper.WriteConsole(ConsoleColor.Red, "Group not found ");
 
-                goto SearchText;
-            }
-        }                           
+        //        goto SearchText;
+        //    }
+        //}                           
 
         public void GetGroupsByTeacher()
         {
@@ -200,8 +228,21 @@ namespace ConsoleProject.Controllers
                 }
                 else
                 {
-                    Helper.WriteConsole(ConsoleColor.Red, "Group not found");
-                    goto CorrectTeacher;
+                    Helper.WriteConsole(ConsoleColor.Red, "Group not found, try again - 1, back to top - 2");
+                    string again = Console.ReadLine();
+
+                    int againCheck;
+
+                    bool isAgainCheck = int.TryParse(again, out againCheck);
+
+                    if (isAgainCheck)
+                    {
+                        switch (againCheck)
+                        {
+                            case 1:
+                                goto CorrectTeacher;
+                        }
+                    }
                 }             
             }
             else
@@ -213,7 +254,8 @@ namespace ConsoleProject.Controllers
         }
 
         public void GetGroupsByRoom()
-        {
+        { 
+            
             Helper.WriteConsole(ConsoleColor.Blue, "Please add group room");
             GroupRoom: string searchRoom = Console.ReadLine();
             List<Group> groupsByRoom = groupService.GetGroupsByRoom(searchRoom);
@@ -226,18 +268,29 @@ namespace ConsoleProject.Controllers
             }
             else
             {
-                Helper.WriteConsole(ConsoleColor.Red, "Group not found");
-                goto GroupRoom;
-            }
-            
+                Helper.WriteConsole(ConsoleColor.Red, "Group not found, try again - 1, back to top - 2");
+                string again = Console.ReadLine();
 
+                int againCheck;
+
+                bool isAgainCheck = int.TryParse(again, out againCheck);
+
+                if (isAgainCheck)
+                {
+                    switch (againCheck)
+                    {
+                        case 1 :
+                            goto GroupRoom;                            
+                    }
+                }                              
+            }           
         }
 
         public void SearchForGroupName()
         {
             Helper.WriteConsole(ConsoleColor.Blue, "Please add search text");
 
-            SearchText: string searchGroupName = Console.ReadLine();
+            SearchText:  string searchGroupName = Console.ReadLine();
 
             List<Group> groupsByName = groupService.SearchForGroupName(searchGroupName);
             if (groupsByName.Count != 0)
@@ -249,12 +302,25 @@ namespace ConsoleProject.Controllers
             }
             else
             {
-                Helper.WriteConsole(ConsoleColor.Red, "Library not found ");
+                //Helper.WriteConsole(ConsoleColor.Red, "Group not found ");
+                //goto SearchText;
 
-                goto SearchText;
+                Helper.WriteConsole(ConsoleColor.Red, "Group not found, try again - 1, back to top - 2");
+                string again = Console.ReadLine();
+
+                int againCheck;
+
+                bool isAgainCheck = int.TryParse(again, out againCheck);
+
+                if (isAgainCheck)
+                {
+                    switch (againCheck)
+                    {
+                        case 1:
+                            goto SearchText;
+                    }
+                }
             }
-
-
-        }
+        }      
     }
 }
