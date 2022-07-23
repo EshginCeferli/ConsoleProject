@@ -1,6 +1,7 @@
 ﻿using ConsoleProject.Controllers;
 using Service.Helpers;
 using System;
+using System.Threading;
 
 namespace ConsoleProject
 {
@@ -8,11 +9,25 @@ namespace ConsoleProject
     {
         static void Main(string[] args)
         {
+            
             StudentController studentController = new StudentController();
             GroupController groupController = new GroupController();
 
+            Helper.WriteConsole(ConsoleColor.Cyan, "Welcome, please press any button to see options : ");
+            string anyButton = Console.ReadLine();
+
+            Helper.WriteConsole(ConsoleColor.DarkCyan, " Options : ");
+            Console.WriteLine("");
+            
+            switch (anyButton)
+            {
+                default:
+                    GetMenues();
+                    break;
+            }
+
             Helper.WriteConsole(ConsoleColor.Blue, "Select one option : ");
-            GetMenues();
+           
 
             while (true)
             {
@@ -98,6 +113,11 @@ namespace ConsoleProject
                             studentController.SeachStudentsByName();
                             break;
 
+                        case (int)Menues.UpdateStudent: // 15
+
+                            studentController.UpdateStudent();
+                            break;
+
                         default:
 
                             Helper.WriteConsole(ConsoleColor.Red, "Select existing option : ");
@@ -113,8 +133,7 @@ namespace ConsoleProject
         }
         private static void GetMenues()
         {            
-            Helper.WriteConsole(ConsoleColor.Yellow, " Create Group - 1, Get Group By Id - 2, Update Group - 3, Delete Group - 4, Get All Groups - 5, Get Groups By Teacher - 6,  GetGroupsByRoom - 7, Search For Group Name - 8, Create Student - 9, Get Student ById - 10, Delete Student - 11, Get students by age - 12, Get students by Group Id - 13, Search student by Name - 14");
-           
+            Helper.WriteConsole(ConsoleColor.Yellow, " Create Group - 1 "," Get Group By Id - 2" , " Update Group - 3", " Delete Group - 4", " Get All Groups - 5", "Get Groups By Teacher - 6",  " GetGroupsByRoom - 7", " Search For Group Name - 8", " Create Student - 9", " Get Student ById - 10 ", " Delete Student - 11", " Get students by age - 12", " Get students by Group Id - 13", " Search student by Name - 14", "Update Student - 15 ");           
         }
     }
    

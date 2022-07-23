@@ -26,21 +26,9 @@ namespace Service.Services
 
         public void Delete(int id)
         {
-            try
-            {
-                Group group = GetById(id);
+            Group group = GetById(id);           
 
-                if (group != null) _groupRepository.Delete(group);
-                
-                else throw new NotFoundException(" Group Not Found");              
-
-            }
-            catch (System.Exception ex)
-            {
-
-                System.Console.WriteLine(ex.Message);
-            }
-            
+            _groupRepository.Delete(group);
         }
 
         public List<Group> GetAll()
@@ -61,16 +49,12 @@ namespace Service.Services
         {
             Group dbGroup = GetById(id);
             if (dbGroup is null) return null;
-            dbGroup.Id = group.Id;
+            group.Id = dbGroup.Id;
             _groupRepository.Update(group);
-            return group; 
+            return group;           
         }
 
-        //public List<Group> Search(string search)
-        //{
-        //    return _groupRepository.GetAll(m => m.Name.ToLower().Trim().StartsWith(search.ToLower().Trim()));
-            
-        //}
+        
 
         public List<Group> GetGroupsByTeacher(string teacher)
         {

@@ -59,5 +59,14 @@ namespace Service.Services
         {
             return _studentRepository.GetAll(m => m.Name.Trim().ToLower().Contains(name.Trim().ToLower()));
         }
+
+        public Student UpdateStudent(int id, Student student)
+        {
+            Student dbStudent = GetStudentById(id);
+            if (dbStudent == null) return null;
+            student.Id = dbStudent.Id;
+            _studentRepository.Update(student);
+            return student;          
+        }
     }
 }

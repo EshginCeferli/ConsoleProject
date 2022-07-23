@@ -5,28 +5,27 @@ namespace Service.Helpers
 {
     public static class Helper
     {
-        public static void WriteConsole(ConsoleColor color, string text)
+        public static void WriteConsole(ConsoleColor color, params string[] text)
         {
-            Console.ForegroundColor = color;
-            Console.WriteLine(text);
-            Console.ResetColor();            
+            foreach (var item in text)
+            {
+                Console.ForegroundColor = color;
+                Console.WriteLine(item);
+                Console.ResetColor();
+            }            
         }
 
-        public static void WriteConsoleColumn(ConsoleColor color, string text)
-        {
-            Console.ForegroundColor = color;
-            Console.Write(text);
-            Console.ResetColor();
-        }
 
         public static bool CheckString(string input)
         {
             return Regex.IsMatch(input, "^[a-zA-Z]+$");
         }
     }
+
     public enum Menues
     {
         GoBack = 0,
+
         // Options of Group
 
         CreateGroup = 1,
@@ -46,7 +45,7 @@ namespace Service.Helpers
         DeleteStudent = 11,
         GetStudentByAge = 12,
         GetStudentsByGroupId = 13,
-        SearchStudentByName = 14
-
+        SearchStudentByName = 14,
+        UpdateStudent = 15
     }
 }

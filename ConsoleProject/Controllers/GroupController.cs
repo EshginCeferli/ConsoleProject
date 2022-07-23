@@ -26,7 +26,7 @@ namespace ConsoleProject.Controllers
 
                 bool isGroupTeacher = Helper.CheckString(groupTeacher);
 
-                if (isGroupTeacher is true || groupTeacher != "") 
+                if (isGroupTeacher is true && groupTeacher != "") 
                 {
                     Helper.WriteConsole(ConsoleColor.Blue, "Please add Group Room");
 
@@ -119,35 +119,61 @@ namespace ConsoleProject.Controllers
 
             if (isGroupId)
             {
-                Helper.WriteConsole(ConsoleColor.Red, "Add new group name : ");
+                var result = groupService.GetById(groupId);
 
-                string groupNewName = Console.ReadLine();
-
-                Helper.WriteConsole(ConsoleColor.Blue, "Add new group teacher : ");
-
-                string groupNewTeacher = Console.ReadLine();
-
-                Helper.WriteConsole(ConsoleColor.Blue, "Add new group room : ");
-
-                string groupNewRoom = Console.ReadLine();
-
-                Group group = new Group()
+                if (result != null)
                 {
-                    Name = groupNewName,
-                    Teacher = groupNewTeacher,
-                    Room = groupNewRoom
-                };
-                var resultGroup = groupService.Update(groupId, group);
+                    Helper.WriteConsole(ConsoleColor.Blue, "Add new group name : ");
 
-                if (resultGroup == null)
-                {
-                    Helper.WriteConsole(ConsoleColor.Red, "Group not found, please try again : ");
-                    goto GroupId;
+                    string groupNewName = Console.ReadLine();
+
+                    Helper.WriteConsole(ConsoleColor.Blue, "Add new group teacher : ");
+
+                CorrectTeacher: string groupNewTeacher = Console.ReadLine();
+
+                    //string groupTeacher;
+
+                    bool isGroupTeacher = Helper.CheckString(groupNewTeacher);
+
+                    if (isGroupTeacher || groupNewTeacher == "")
+                    {
+                        Helper.WriteConsole(ConsoleColor.Blue, "Add new group room : ");
+
+                        string groupNewRoom = Console.ReadLine();
+
+                        Group group = new Group()
+                        {
+                            Name = groupNewName,
+                            Teacher = groupNewTeacher,
+                            Room = groupNewRoom
+                        };
+
+                        var resultGroup = groupService.Update(groupId, group);
+
+                        if (resultGroup == null)
+                        {
+                            Helper.WriteConsole(ConsoleColor.Red, "Group not found, please try again : ");
+                            goto GroupId;
+                        }
+                        else
+                        {
+                            Helper.WriteConsole(ConsoleColor.Green, $"Group Id : {resultGroup.Id}, Group name : {resultGroup.Name}, Group teacher : {resultGroup.Teacher}, Group room : {resultGroup.Room}");
+                        }
+                    }
+                    else
+                    {
+                        Helper.WriteConsole(ConsoleColor.Red, "Add correct new teacher name : ");
+                        goto CorrectTeacher;
+
+                    }
                 }
                 else
                 {
-                    Helper.WriteConsole(ConsoleColor.Green, $"Group Id : {resultGroup.Id}, Group name : {resultGroup.Name}, Group teacher : {resultGroup.Teacher}, Group room : {resultGroup.Room}");
+                    Helper.WriteConsole(ConsoleColor.Red, " Group not found, add Id again : ");
+                    goto GroupId;
                 }
+                
+
             }
             else
             {
@@ -165,7 +191,7 @@ namespace ConsoleProject.Controllers
 
             bool isGroupId = int.TryParse(groupId, out id);
 
-            if (isGroupId || id != 0)
+            if (isGroupId )
             {
                 groupService.Delete(id);               
 

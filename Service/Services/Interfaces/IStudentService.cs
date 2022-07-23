@@ -19,6 +19,7 @@ namespace Service.Services.Interfaces
 
         List<Student> SearchStudentsByName(string name);
 
+        Student UpdateStudent(int id, Student student);
        
     }
 }

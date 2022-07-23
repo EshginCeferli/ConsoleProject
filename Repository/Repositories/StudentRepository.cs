@@ -10,6 +10,10 @@ namespace Repository.Repositories
 {
     public class StudentRepository : IRepository<Student>
     {
+        readonly GroupRepository GroupRepository = new GroupRepository();
+
+
+
         public void Create(Student data)
         {
             try
@@ -51,7 +55,20 @@ namespace Repository.Repositories
 
         public void Update(Student data)
         {
-            throw new NotImplementedException();
+            Student student = Get(m => m.Id == data.Id);
+
+            if (string.IsNullOrEmpty(data.Name.ToString()))
+                data.Name = student.Name;
+
+            if (string.IsNullOrEmpty(data.Surname.ToString()))
+                data.Surname = student.Surname;
+
+            if (string.IsNullOrEmpty(data.Age.ToString()))
+                data.Age = student.Age;
+
+            if (string.IsNullOrEmpty(data.Group.Id.ToString()))
+                data.Group.Id = student.Group.Id;
+
         }
     }
 }

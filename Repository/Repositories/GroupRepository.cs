@@ -8,6 +8,7 @@ namespace Repository.Repositories
 {
     public class GroupRepository : IRepository<Group>
     {
+
         public void Create(Group data)
         {
             try
@@ -22,8 +23,18 @@ namespace Repository.Repositories
         }
 
         public void Delete(Group data)
-        {   if(data is null)     
-            AppDbContext<Group>.datas.Remove(data);
+        {
+            try
+            {
+                if (data is null) throw new Exception("Data doesn't already exit");
+                AppDbContext<Group>.datas.Remove(data);
+
+            }
+            catch (Exception ex)
+            {
+
+                Console.WriteLine(ex.Message); ;
+            }
         }
 
         public Group Get(Predicate<Group> predicate)
@@ -39,17 +50,15 @@ namespace Repository.Repositories
         public void Update(Group data)
         {
             Group group = Get(m => m.Id == data.Id);
-            if (!string.IsNullOrEmpty(data.Name))            
-                group.Name = data.Name;       
+            if (string.IsNullOrEmpty(data.Name.ToString()))
+                data.Name = group.Name;
 
-                
-            if (!string.IsNullOrEmpty(data.Teacher))
-                group.Teacher = data.Teacher;
-           
-            
-            if (!string.IsNullOrEmpty(data.Room))
-                group.Room = data.Room;         
-            
+            if (string.IsNullOrEmpty(data.Teacher.ToString()))
+                data.Teacher = group.Teacher;
+
+            if (string.IsNullOrEmpty(data.Room.ToString()))
+                data.Room = group.Room;
+          
         }
     }
 }
