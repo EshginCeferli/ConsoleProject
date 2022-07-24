@@ -401,15 +401,12 @@ namespace ConsoleProject.Controllers
                             Helper.WriteConsole(ConsoleColor.Red, "Add correct new surname : ");
                             goto StudentSurname;
                         }
-
                     }
                     else
                     {
                         Helper.WriteConsole(ConsoleColor.Red, "Add correct new name : ");
                         goto StudentName;
                     }
-
-
                 }
                 else
                 {
