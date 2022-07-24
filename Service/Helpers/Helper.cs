@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Threading;
 
 namespace Service.Helpers
 {
@@ -12,9 +13,20 @@ namespace Service.Helpers
                 Console.ForegroundColor = color;
                 Console.WriteLine(item);
                 Console.ResetColor();
-            }            
+                Thread.Sleep(25);
+            }
         }
 
+        public static void WriteFormat(ConsoleColor color, string text)
+        {           
+            foreach (var item in text)
+            { 
+                Console.ForegroundColor = color;
+                Thread.Sleep(35);  
+                Console.Write(item);
+                Console.ResetColor();
+            }            
+        }
 
         public static bool CheckString(string input)
         {

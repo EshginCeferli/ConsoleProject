@@ -52,12 +52,15 @@ namespace Repository.Repositories
             Group group = Get(m => m.Id == data.Id);
             if (string.IsNullOrEmpty(data.Name.ToString()))
                 data.Name = group.Name;
+            group.Name = data.Name;
 
             if (string.IsNullOrEmpty(data.Teacher.ToString()))
                 data.Teacher = group.Teacher;
+            group.Teacher = data.Teacher;
 
             if (string.IsNullOrEmpty(data.Room.ToString()))
                 data.Room = group.Room;
+            group.Room = data.Room;
           
         }
     }

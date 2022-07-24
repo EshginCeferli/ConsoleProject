@@ -184,7 +184,7 @@ namespace ConsoleProject.Controllers
 
         public void Delete()
         {
-            Helper.WriteConsole(ConsoleColor.Blue, "Add group id : ");
+            Helper.WriteConsole(ConsoleColor.Blue, " Add group id : ");
         GroupId: string groupId = Console.ReadLine();
 
             int id;
@@ -193,13 +193,21 @@ namespace ConsoleProject.Controllers
 
             if (isGroupId )
             {
-                groupService.Delete(id);               
-
+                 var result = groupService.Delete(id);
+                if (result)
+                {
+                    Helper.WriteConsole(ConsoleColor.Green, " Group Deleted");
+                }
+                else
+                {
+                    Helper.WriteConsole(ConsoleColor.Red, " Group not found, add id again ");
+                    goto GroupId;
+                }
             }
 
             else
             {
-                Helper.WriteConsole(ConsoleColor.Red, "Id must be number");
+                Helper.WriteConsole(ConsoleColor.Red, " Id must be number");
                 goto GroupId;
             }
         }

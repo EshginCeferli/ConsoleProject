@@ -59,16 +59,22 @@ namespace Repository.Repositories
 
             if (string.IsNullOrEmpty(data.Name.ToString()))
                 data.Name = student.Name;
+            student.Name = data.Name;
+            
 
             if (string.IsNullOrEmpty(data.Surname.ToString()))
                 data.Surname = student.Surname;
+            student.Surname = data.Surname;
+
 
             if (string.IsNullOrEmpty(data.Age.ToString()))
                 data.Age = student.Age;
+            student.Age = data.Age;
+
 
             if (string.IsNullOrEmpty(data.Group.Id.ToString()))
-                data.Group.Id = student.Group.Id;
-
+                data.Group.Name = student.Group.Name;
+            student.Group.Name = data.Group.Name;
         }
     }
 }

@@ -1,7 +1,6 @@
 ﻿using Domain.Models;
 using Service.Helpers;
 using Service.Services;
-using Service.Services.Interfaces;
 using System;
 using System.Collections.Generic;
 
@@ -11,6 +10,11 @@ namespace ConsoleProject.Controllers
     {
         readonly StudentService studentService = new StudentService();
         readonly GroupService groupService = new GroupService();
+
+        Group group = new Group();
+
+
+        
 
         public void Create()
         {
@@ -78,7 +82,7 @@ namespace ConsoleProject.Controllers
                 }
                 else
                 {
-                    Helper.WriteConsole(ConsoleColor.Red, " Name or Surname contains digit or empty ");
+                    Helper.WriteConsole(ConsoleColor.Red, " Name or Surname contains digit or empty, Add name again ");
                     goto NameSurname;
                 }
             }
@@ -137,19 +141,31 @@ namespace ConsoleProject.Controllers
 
         public void DeleteStudent()
         {
-            Helper.WriteConsole(ConsoleColor.Blue, "Add student id : ");
-        StudentId: string studentId = Console.ReadLine();
+            Helper.WriteConsole(ConsoleColor.Blue, " Add student id : ");
+        GroupId: string studentId = Console.ReadLine();
+
             int id;
+
             bool isStudentId = int.TryParse(studentId, out id);
 
             if (isStudentId)
             {
-                studentService.DeleteStudent(id);
+                var result = groupService.Delete(id);
+                if (result)
+                {
+                    Helper.WriteConsole(ConsoleColor.Green, " Student Deleted");
+                }
+                else
+                {
+                    Helper.WriteConsole(ConsoleColor.Red, " Student not found, add id again ");
+                    goto GroupId;
+                }
             }
+
             else
             {
-                Helper.WriteConsole(ConsoleColor.Red, "Id must be number");
-                goto StudentId;
+                Helper.WriteConsole(ConsoleColor.Red, " Id must be number");
+                goto GroupId;
             }
         }
 
@@ -336,15 +352,17 @@ namespace ConsoleProject.Controllers
                                     var resultGroup = groupService.GetById(selectedGroupId);
                                     if (resultGroup is null)
                                     {
-                                        Console.WriteLine(" Olmadi");
+                                        
                                     }
+                                    var resultOldStudent = studentService.GetStudentById(studentId);
 
                                     Student student = new Student()
                                     {
                                         Name = studentName,
                                         Surname = studentSurname,
                                         Age = selectedAge,
-                                        Group = resultGroup
+                                        Group = groupService.GetById(resultOldStudent.Group.Id)
+
                                     };
 
                                     var resultUpdate = studentService.UpdateStudent(studentId, student);
@@ -395,7 +413,7 @@ namespace ConsoleProject.Controllers
                 }
                 else
                 {
-                    Helper.WriteConsole(ConsoleColor.Red, " Student not found, add if again : ");
+                    Helper.WriteConsole(ConsoleColor.Red, " Student not found, add id again : ");
                     goto StudentId;
                 }
 

@@ -28,10 +28,18 @@ namespace Service.Services
 
         }
 
-        public void DeleteStudent(int id)
+        public bool DeleteStudent(int id)
         {
             Student student = GetStudentById(id);
-            _studentRepository.Delete(student);
+            if (student != null)
+            {
+                _studentRepository.Delete(student);
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         public Student GetStudentById(int id)

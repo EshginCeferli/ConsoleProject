@@ -9,7 +9,7 @@ namespace Service.Services
 
         Group Update(int id, Group group);
 
-        void Delete(int id);
+        bool Delete(int id);
 
         Group GetById(int id);
 

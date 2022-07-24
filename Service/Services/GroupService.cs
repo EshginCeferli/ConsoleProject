@@ -24,11 +24,18 @@ namespace Service.Services
             return group;
         }
 
-        public void Delete(int id)
+        public bool Delete(int id)
         {
             Group group = GetById(id);           
-
-            _groupRepository.Delete(group);
+            if (group != null)
+            {
+                _groupRepository.Delete(group);
+                return true;
+            }
+            else
+            {
+                return false;
+            }               
         }
 
         public List<Group> GetAll()
@@ -41,9 +48,7 @@ namespace Service.Services
             var group = _groupRepository.Get(m => m.Id == id);
             if (group == null) return null;
             return group;
-        }
-
-        
+        }        
 
         public Group Update(int id, Group group)
         {
@@ -52,9 +57,7 @@ namespace Service.Services
             group.Id = dbGroup.Id;
             _groupRepository.Update(group);
             return group;           
-        }
-
-        
+        }        
 
         public List<Group> GetGroupsByTeacher(string teacher)
         {
