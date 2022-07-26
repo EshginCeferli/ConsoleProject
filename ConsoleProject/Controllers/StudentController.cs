@@ -12,13 +12,10 @@ namespace ConsoleProject.Controllers
         readonly GroupService groupService = new GroupService();
 
         Group group = new Group();
-
-
         
 
         public void Create()
-        {
-            StudentService studentService = new StudentService();
+        {            
 
             Helper.WriteConsole(ConsoleColor.Blue, " Add group id ");
 
@@ -339,6 +336,19 @@ namespace ConsoleProject.Controllers
 
                             if (isStudentAge || studentAge == "")
                             {
+                                bool isAgeEmpty = string.IsNullOrEmpty(studentAge);
+
+                                int? count;
+
+
+                                if (isAgeEmpty)
+                                {
+                                    count = null;
+                                }
+                                else
+                                {
+                                    count = selectedAge;
+                                }
                                 Helper.WriteConsole(ConsoleColor.Blue, "Add new student group Id : ");
 
                                 StGroupId: string newStGroupId = Console.ReadLine();
@@ -360,7 +370,7 @@ namespace ConsoleProject.Controllers
                                     {
                                         Name = studentName,
                                         Surname = studentSurname,
-                                        Age = selectedAge,
+                                        Age = count,
                                         Group = groupService.GetById(resultOldStudent.Group.Id)
 
                                     };

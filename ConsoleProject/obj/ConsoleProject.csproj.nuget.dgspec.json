@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\ConsoleProject\\ConsoleProject.csproj": {}
+    "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\ConsoleProject\\ConsoleProject.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\ConsoleProject\\ConsoleProject.csproj": {
+    "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\ConsoleProject\\ConsoleProject.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\ConsoleProject\\ConsoleProject.csproj",
+        "projectUniqueName": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\ConsoleProject\\ConsoleProject.csproj",
         "projectName": "ConsoleProject",
-        "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\ConsoleProject\\ConsoleProject.csproj",
+        "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\ConsoleProject\\ConsoleProject.csproj",
         "packagesPath": "C:\\Users\\ESQIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\ConsoleProject\\obj\\",
+        "outputPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\ConsoleProject\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -32,8 +32,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Service\\Service.csproj": {
-                "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Service\\Service.csproj"
+              "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Service\\Service.csproj": {
+                "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Service\\Service.csproj"
               }
             }
           }
@@ -66,14 +66,14 @@
         }
       }
     },
-    "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Domain\\Domain.csproj": {
+    "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Domain\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Domain\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Domain\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Domain\\Domain.csproj",
+        "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Domain\\Domain.csproj",
         "packagesPath": "C:\\Users\\ESQIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Domain\\obj\\",
+        "outputPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Domain\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -124,14 +124,14 @@
         }
       }
     },
-    "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Repository\\Repository.csproj": {
+    "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Repository\\Repository.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Repository\\Repository.csproj",
+        "projectUniqueName": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Repository\\Repository.csproj",
         "projectName": "Repository",
-        "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Repository\\Repository.csproj",
+        "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Repository\\Repository.csproj",
         "packagesPath": "C:\\Users\\ESQIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Repository\\obj\\",
+        "outputPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Repository\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -152,8 +152,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Domain\\Domain.csproj": {
-                "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Domain\\Domain.csproj"
+              "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Domain\\Domain.csproj"
               }
             }
           }
@@ -186,14 +186,14 @@
         }
       }
     },
-    "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Service\\Service.csproj": {
+    "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Service\\Service.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Service\\Service.csproj",
+        "projectUniqueName": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Service\\Service.csproj",
         "projectName": "Service",
-        "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Service\\Service.csproj",
+        "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Service\\Service.csproj",
         "packagesPath": "C:\\Users\\ESQIN\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Service\\obj\\",
+        "outputPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Service\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -214,8 +214,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Repository\\Repository.csproj": {
-                "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C#\\ConsoleProject\\Repository\\Repository.csproj"
+              "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Repository\\Repository.csproj": {
+                "projectPath": "C:\\Users\\ESQIN\\OneDrive\\İş masası\\C# Practise\\ProjectClone\\Repository\\Repository.csproj"
               }
             }
           }

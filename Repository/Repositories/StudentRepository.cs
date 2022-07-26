@@ -67,9 +67,11 @@ namespace Repository.Repositories
             student.Surname = data.Surname;
 
 
-            if (string.IsNullOrEmpty(data.Age.ToString()))
-                data.Age = student.Age;
-            student.Age = data.Age;
+            if (data.Age != null)
+                student.Age = data.Age;
+            //if (string.IsNullOrEmpty(data.Age.ToString()))
+            //    data.Age = student.Age;
+            //student.Age = data.Age;
 
 
             if (string.IsNullOrEmpty(data.Group.Id.ToString()))
